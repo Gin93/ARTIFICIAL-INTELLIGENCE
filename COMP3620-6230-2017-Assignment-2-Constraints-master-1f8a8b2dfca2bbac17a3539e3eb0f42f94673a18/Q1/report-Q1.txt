@@ -1,0 +1,11 @@
+report for Q1
+Zi JIN
+u5541673
+
+My testing platform: WIN10 CPU: i7-6700  RAM:16GB
+
+---------------
+result
+---------------
+All of the problem instances can be solved within 5s by my code. 
+Because the default solver (g12-fd) can solve this problem in an instant, I cannot find any substantially better results obtained with a different solver.

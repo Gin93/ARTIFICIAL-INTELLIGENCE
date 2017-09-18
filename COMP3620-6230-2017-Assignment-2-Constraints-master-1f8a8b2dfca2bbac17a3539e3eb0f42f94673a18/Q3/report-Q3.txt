@@ -1,0 +1,16 @@
+Report Q3
+Zi Jin
+u5541673
+
+My testing platform: WIN10 CPU: i7-6700  RAM:16GB
+
+---------------
+result
+---------------
+4-3 case: can be solved within 5s
+6-3 case: can be solved within 30s
+
+12-4 and 21-8 cases: cannot be solved within 1min
+
+
+PS: The trick I used in Q2 cannot help me solve the 12-4 problem within 1min, so I removed that part of code in this question.

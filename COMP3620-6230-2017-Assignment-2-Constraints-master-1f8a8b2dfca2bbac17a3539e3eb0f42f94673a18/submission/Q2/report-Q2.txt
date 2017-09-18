@@ -1,0 +1,28 @@
+Report Q2
+Zi Jin
+u5541673
+
+My testing platform: WIN10 CPU: i7-6700  RAM:16GB
+
+
+---------------
+result
+---------------
+All of the problem instances can be solved within 5s by my code. 
+
+
+---------------------------------
+How I solved the largest problem
+--------------------------------
+In question 1, I didn't create a variable whose format just like the output format. I create two matrix to represent the amount of goods for each truck delivering to each
+customers,then output the result following the required format.  Personally, I think this way is faster than creating a variable following the output format.
+
+So in question 2, I kept using the above two matrix, but I also created a matrix following the output format in order to calculate the sequences. My idea is enforcing the 
+Minizinc to satisfy that two matrix firstly, then assign the value to the rest matrix. I find a way can do that: in the output, if I tried to output that two martrix, 
+Minizicn tend to satisfy that firstly. So I wrote
+
+	[if fix(deliverychilled [i,j]) = 0 then "" else "" endif | i in customers,j in trucks] ++
+	[if fix(deliveryambient [i,j]) = 0 then "" else "" endif | i in customers,j in trucks] ++
+
+they will NEVER be outputed,but it can make the program satisfy them firstly.
+

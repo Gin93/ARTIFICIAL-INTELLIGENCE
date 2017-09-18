@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="Python, tutorial, AI">
+  <meta name="description" content="A Python tutorial for programmers with previous experience.">
+  <meta name="author" content="Nathan Robinson, Miquel Ramirez, Enrico Scala">
+  <title>COMP3620/6320 Assignment 0: Python &mdash; Warm-Up</title>
+  <link rel="stylesheet" href="style.css" type="text/css" />
+  <link rel="stylesheet" href="pygments.css" type="text/css" />
+</head>
+
+<body>
+<div class="document"> <div class="documentwrapper"> <div class="body">
+
+<div class="section" id="front-matter">
+<h1>Assignment 0: Python &mdash; Tutorial</h1>
+
+<p>This assignment is designed to introduce the core concepts of Python 3 and ensure that
+you have the skills required to complete the subsequent assignments.</p>
+
+<p>Python is an object-oriented, interpreted, garbage collected, dynamically typed language
+where white space matters. </p>
+
+<p>It has a vast API and is widely used for scientific programming
+(via <a href="http://www.scipy.org/" target="_blank">SciPy</a>).</p>
+
+<p>It can function as a Matlab replacement
+(via <a href="http://www.numpy.org/" target="_blank">NumPy</a> and
+<a href="http://matplotlib.org/" target="_blank">MatPlotLib</a>).</p>
+</div>
+
+<div class="section" id="contents">
+<h2>Contents:</h2>
+<ul>
+<li><a href="#useful_resources">Useful Resources</a></li>
+<li><a href="#how_to_submit">How to Submit the Exercises</a></li>
+<li><a href="#installing_python">Installing Python</a></li>
+<li><a href="#interpreted">Python is Interpreted</a></li>
+<li><a href="#whitespace">Whitespace</a></li>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#print_function">The print function</a></li>
+<li><a href="#comments">Comments</a></li>
+<li><a href="#expressions_values_types_assignment">Expressions, Values, Types, and Assignment</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#exercise_1"><strong>Exercise 1: Math Functions &mdash; 5 Marks</strong></a></li>
+<li><a href="#boolean_expressions_conditionals">Boolean Expressions and Conditionals</a></li>
+<li><a href="#while_loops">While Loops</a></li>
+<li><a href="#immutability_strings_tuples">Immutability, Strings, and Tuples</a></li>
+<li><a href="#exercise_2"><strong>Exercise 2: Generating Truth Tables &mdash; 10 Marks</strong></a></li>
+<li><a href="#mutable_types_lists_sets_dictionaries">Mutable Types &mdash; Lists, Sets, and Dictionaries</a></li>
+<li><a href="#functions_mutability_default_arguments">Functions Redux &mdash; Mutability and Default Arguments</a></li>
+<li><a href="#iterators">Iterators</a></li>
+<li><a href="#files">Files</a></li>
+<li><a href="#exercise_3"><strong>Exercise 3. Deterministic Finite Automata &mdash; 15 Marks</strong></a></li>
+<li><a href="#classes_methods">Classes and Methods</a></li>
+<li><a href="#inheritance_polymorphism">Inheritance and Polymorphism</a></li>
+<li><a href="#exceptions">Exceptions</a></li>
+<li><a href="#structure_cmd_line">The Structure of Projects and Command Line Arguments</a></li>
+<li><a href="#exercise_4"><strong>Exercise 4. Pandemic &mdash; 70 Marks</strong></a></li>
+<li><a href="#useful_things">Useful Things</a></li>
+</ul>
+</div>
+
+<div class="section" id="useful_resources">
+<h2>Useful Resources</h2>
+
+<p>Help on the concepts we are covering can be obtained from the excellent, free,
+online textbook <a href="http://www.openbookproject.net/thinkcs/python/english2e/" target="_blank">
+How To Think Like a Computer Scientist &mdash; Learning with Python</a>.</p>
+
+<p>The official <a href="http://docs.python.org/2/tutorial/" target="_blank">Python tutorial</a>
+may also be helpful.</p>
+
+<p><a href="http://pythontutor.com/" target="_blank">Python Tutor</a> can
+visualise the execution of Python code snippets, allowing you to step
+forward and backward through the program's execution. If you're confused by a
+piece of demonstration code in this tutorial, consider executing it in Python
+Tutor to get a better understanding of what it is doing.</p>
+
+<p>Python has a standard <a href="http://www.python.org/dev/peps/pep-0008/"
+target="_blank">style guide</a> called PEP 8, which many people adhere to. You
+may wish to peruse this to get a sense of what constitutes good style. The
+standard style will not be rigorously enforced, but particularly egregious
+violations may attract penalties if they make your code hard to understand.</p>
+</div>
+
+<div class="section" id="how_to_submit">
+<h2>How to Submit the Exercises</h2>
+
+<p>Throughout this assignment, there are four exercises which need to be completed
+and submitted through the course Wattle site, packaged according to the guidelines published
+there.</p>
+
+<p>The files we expect you to submit are the following:</p>
+<ul>
+<li>
+<code>math_functions.py</code>
+</li><li>
+<code>truth_tables.py</code>
+</li><li>
+<code>dfa.py</code>
+</li><li>
+<code>disease_scenario.py</code>
+</li>
+<li>
+<code>health_agents.py</code>
+</li>
+</ul>
+</div>
+
+<p>Failure to comply with the instructions above regarding file names and submission contents will entail that your submission will be <b>automatically</b> rejected.</p>
+
+<div class="section" id="installing_python">
+<h2>Installing Python</h2>
+
+<p>This course uses Python 3. Due to incompatibilities between different major
+versions of the language, it is imperative that you develop your assignments
+using Python 3 rather than Python 2. On Linux and OS X, you can check whether
+you have Python 3 installed by opening up a terminal and entering <code>python3
+--version</code>. The command should print something like &ldquo;Python
+3.5.2+&rdquo; to the screen. It's okay if the minor version is slightly
+different&mdash;the important thing is that the major version should be Python 3
+(3.4.X, 3.5.X, 3.6.X, etc. are all fine).</p>
+
+<p>If you don't have Python 3, you can obtain a copy from the <a
+href="https://www.python.org/downloads/" target="_blank">Python download
+page</a></p>
+
+<div class="section" id="interpreted">
+<h2>Python is Interpreted</h2>
+
+<p>A Python interpreter reads and executes Python scripts. Python interpreters can be
+operated in two ways:</p>
+<ol>
+<li>
+As an interactive interpreter &mdash; In Linux start the interpreter with the command:
+<pre>$ python3</pre>
+</li>
+<li> By reading Python scripts &mdash; In Linux, the Python script (file)
+<code>hello_world.py</code>, which is included with this assignment,
+can be executed with the command:
+<pre>$ python3 hello_world.py</pre>
+</li>
+</ol>
+
+<p>Throughout this exercise it is recommended that you use the interactive interpreter to
+try out new concepts.</p>
+
+<p>In the interactive interpreter information about any type can be obtained with the
+<code>help</code> function.
+For example, <code>help(int)</code>
+will return information about the type <code>int</code>,
+which stores integer numbers.
+</p>
+
+<p>You can exit the interactive interpreter with <code>ctrl-d</code>. <b>Windows</b>: In Windows systems you will need to key in the combination <code>ctrl-z</code> <em>and then </em> press Return.</p>
+
+<p>Write your script files the editor of your choice. We recommend using <a href="https://atom.io/">Atom</a>, a modern, cross-platform editor with good Python support. Make sure you set auto-indentation to
+use spaces.</p>
+
+</div>
+
+<div class="section" id="whitespace">
+<h2>Whitespace is Important</h2>
+
+
+<p>
+Before you get into anything too complicated it is important to realise that in Python,
+<strong>whitespace matters</strong>.</p>
+
+<p>White space &mdash; in contrast with <code>C++</code> or <code>Java</code> that use
+brackets &mdash; is used to delineate blocks of code inside classes,
+functions, conditionals, loops, exceptions, and a number of other constructs.</p>
+
+<p>For instance here are implementations of this function in both C and Python.</p>
+
+<p><code>foo</code> function in <a href="http://en.wikipedia.org/wiki/C_(programming_language)" title="C (programming language)">C</a> with <a href="http://en.wikipedia.org/wiki/1_true_brace_style" title="1 true brace style" class="mw-redirect">K&amp;R indent style</a>:</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="c source-c">
+<pre class="de1">
+<span class="kw4">void</span> foo<span class="br0">(</span><span class="kw4">int</span> x<span class="br0">)</span>
+<span class="br0">{</span>
+    <span class="kw1">if</span> <span class="br0">(</span>x <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">)</span> <span class="br0">{</span>
+        bar<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+        baz<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span> <span class="kw1">else</span> <span class="br0">{</span>
+        qux<span class="br0">(</span>x<span class="br0">)</span><span class="sy0">;</span>
+        foo<span class="br0">(</span>x <span class="sy0">-</span> <span class="nu0">1</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p><code>foo</code> function in Python 2.x:</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="python source-python">
+<pre class="de1">
+<span class="kw1">def</span> foo<span class="br0">(</span>x<span class="br0">)</span>:
+    <span class="kw1">if</span> x <span class="sy0">==</span> <span class="nu0">0</span>:
+        bar<span class="br0">(</span><span class="br0">)</span>
+        baz<span class="br0">(</span><span class="br0">)</span>
+    <span class="kw1">else</span>:
+        qux<span class="br0">(</span>x<span class="br0">)</span>
+        foo<span class="br0">(</span>x - <span class="nu0">1</span><span class="br0">)</span>
+</pre></div>
+</div>
+
+<p>As a general rule, all code within a block must be at the same indentation level.
+Python is picky about this, so expect to get a syntax errors complaining
+about indentation as you do this tutorial.</p>
+
+<p>To avoid issues, do not use tabs as whitespace.</p>
+
+<p><b>NEW on Python 3:</b> Python 3 introduces stronger type-checking via the <code>typing</code> module. Though, if your project
+requires stronger typing mechanisms, it is perhaps better to use a different programming language. </p>
+
+<p>If a line runs too long it can be broken by terminating it with a backslash.
+For readability, the trailing code should be indented further than the base line:</p>
+<div class="highlight"><pre>
+<span class="k">if </span><span class="n">name </span><span class="k">in </span><span class="n">list_of_names[index] </span><span class="k">and</span><span class="n">\</span>
+  <span class="n">age </span><span class="o">&lt; </span><span class="mi">50</span><span class="p">:</span>
+    <span class="k">print(</span><span class="n">...</span>)
+</pre></div>
+</div>
+
+<div class="section" id="modules">
+<h2>Modules</h2>
+
+
+<p>Python comes with a lot of useful built in modules (the Pythonic way of saying "library"). You can find a list of these
+<a href="http://docs.python.org/2/library/" target="_blank">here</a> (<b>Python 3</b> list here <a href="http://docs.python.org/3/library/" target="_blank">here</a>).</p>
+
+<p>Modules can be imported with the
+<code>import</code> statement.</p>
+
+<p>For example, we can import the
+<code>math</code>
+module with the following statement:</p>
+<div class="highlight"><pre>
+<span class="k">import </span><span class="n">math</span>
+</pre></div>
+
+
+<p>To see what functions and attributes it contains use the
+<code>help</code> function after you
+import <code>math</code>.</p>
+<div class="highlight"><pre>
+<span class="nb">help</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To access the functions and attributes of a module, use a period.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">math.sqrt</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="go">8.0</span>
+</pre></div>
+
+
+<p>We can import attributes and functions from modules directly by using the
+<code>from</code> keyword.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">from </span><span class="n">math </span><span class="k">import </span><span class="n">sqrt, factorial</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">factorial</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">64</span><span class="p">))</span>
+<span class="go">40320</span>
+</pre></div>
+
+
+<p> We can rename things when we import them.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">from </span><span class="n">math </span><span class="k">import </span><span class="n">sqrt </span><span class="k">as </span><span class="n">sq</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sq</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="go">8.0</span>
+</pre></div>
+
+
+<p>It is possible, though generally ill-advised, to import everything in a module.</p>
+<div class="highlight"><pre>
+<span class="k">from </span><span class="n">math </span><span class="k">import </span><span class="n">*</span>
+</pre></div>
+
+
+<p>The import statement will be scoped according to where it is used.
+If it is used at the top of a file, then everything in the file will have access to whatever is imported.
+If it is used within a function (or any kind of block), then only subsequent lines in that function (block) can use
+the module.</p>
+
+<p>There is a module called <code>this</code>.
+For a bit of fun and some advice about Python, try importing it.</p>
+
+</div>
+
+<div class="section" id="print_statement">
+<h2>The print function</h2>
+
+<p>In Python 3, the easiest way to write to the screen is the
+<code>print</code> <em>built-in function</em>.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="s">&quot;Hello World!&quot;<span class="k">)</span>
+<span class="go">Hello World!</span>
+</pre></div>
+
+
+<p>The <code>print</code>
+function can take as an argument a string object or an expression whose result is a string object</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="s">&quot;The circumference of a unit circle is: &quot;</span><span class="o"> + </span><span class="k">str(</span><span class="mi">2</span> <span class="o">*</span> <span class="mf">3.14159</span><span class="k">))</span>
+<span class="go">The circumference of a unit circle is: 6.28318</span>
+</pre></div>
+<p>By using the built-in function <code>str()</code> we are explicitly converting the result of the multiplication into a string object, which can be concatenated with another string via the operator <code>+</code>.</p>
+
+<p>The method above is not very convenient when we need to generate strings dynamically. The
+<code>format()</code> method of string objects allows us to achieve the same we did with the previous command
+</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="s">&quot;The circumference of a unit circle is: {} &quot;</span>.format(<span class="mi">2</span> <span class="o">*</span> <span class="mf">3.14159</span>)<span class="k">)</span>
+<span class="go">The circumference of a unit circle is: 6.28318</span>
+</pre></div>
+<p>where the empty curly braces <code>{}</code> are substituted by the first argument of the <code>format</code> method. When we have several pieces of data to be inserted in a string,
+the i-th pair of curly braces in the string will be substituted by the i-th argument of <code>format()</code></p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="s">&quot;My birthday is: {}/{}/{} &quot;</span>.format(<span class="mi">13</span>, <span class="mi">6</span>, <span class="mi">1970</span>)<span class="k">)</span>
+<span class="go">My birthday is: 13/6/1970</span>
+</pre></div>
+<p>this can be overridden by specifying the index of the argument of <code>format()</code> we want each pair of curly brackets to be substituted by</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="s">&quot;In the United States, my birthday is: {1}/{0}/{2} &quot;</span>.format(<span class="mi">13</span>, <span class="mi">6</span>, <span class="mi">1970</span>)<span class="k">)</span>
+<span class="go">In the United States, my birthday is: 6/13/1970</span>
+</pre></div>
+
+
+</div>
+
+<div class="section" id="comments">
+<h2>Comments</h2>
+
+<p>As a general rule &mdash; and as a requirement for this assignment &mdash; you should comment your code.</p>
+
+<p>In Python, single line comments start with a hash.</p>
+<div class="highlight"><pre>
+<span class="c"># This line is a comment, it will not be executed </span>
+</pre></div>
+
+
+<p>Multiple line comments are contained between triple quotes. They are treated
+like a statement that does nothing and must be indented to the level of the
+block they occur in.</p>
+<div class="highlight"><pre>
+<span class="cm">&quot;&quot;&quot; This is a multiple line comment.
+    Python will read it, but ignore it.
+&quot;&quot;&quot;</span>
+</pre></div>
+
+</div>
+
+<div class="section" id="expressions_values_types_assignment">
+<h2>Expressions, Values, Types, and Assignment</h2>
+
+<p>In Python, expressions return values.</p>
+
+<p>Values &mdash; like just about everything else &mdash; are objects.</p>
+
+<p>They have a type which can be determined with the
+<code>type</code> function.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">&lt;class 'int'&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="go">&lt;class 'float'&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="go">&lt;class 'str'&gt;</span>
+</pre></div>
+
+
+<p>Check the types of some other expressions to familiarise yourself with this.</p>
+
+<p>As we saw while discussing the <code>print()</code> function, objects have methods and attributes which can be accessed with a period.
+For example, we can make a new lower case version of a string as follows:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;HELLO&quot;</span><span class="p">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span>
+<span class="go">'hello'</span>
+</pre></div>
+
+
+<p>You can use the
+<code>help</code>
+function or documentation to find out more useful methods
+of the built in types.</p>
+
+<p>We can build expressions using all of the operators you might expect.
+A list of operators in Python can be found
+<a href="http://www.tutorialspoint.com/python/python_basic_operators.htm" target="_blank">here</a>.</p>
+
+
+<p>In Python <code>=</code>
+is the assignment operator. It stores a value in memory and points
+a variable name at it.</p>
+
+<p>Because Python is dynamically typed, we do not have to
+specify the type of a variable. A variable can store any value at any time,
+regardless of type.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name </span><span class="o">= </span><span class="s">&quot;Ludwig&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="go">&lt;class 'str'&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name </span><span class="o">= </span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="go">&lt;class 'float'&gt;</span>
+</pre></div>
+
+
+<p>The names of types -
+<code>int</code>,
+<code>float</code>,
+<code>str</code>, etc.
+can be used as functions to convert values between types.
+We saw an example of this converting floating point numbers into strings, and you should experiment with this to see if it behaves as expected when converting strings into numbers.</p>
+
+<p><code>None</code>,
+is a special value which is usually used to denote no value.
+We will explore this more later.</p>
+
+<p>A Python script can be made interactive by getting input from the user with the
+<code>input</code>.
+Try the following in a script file:</p>
+<div class="highlight"><pre>
+<span class="k">print(</span><span class="s">&quot;Enter your name:&quot;</span><span class="k">)</span>
+<span class="n">name </span><span class="o">= </span><span class="n">input</span><span class="p">()</span>
+<span class="k">print(</span><span class="s">&quot;Hello {}&quot;</span>.format(name)<span class="k">)</span>
+</pre></div>
+</div>
+
+<div class="section" id="functions">
+<h2>Functions</h2>
+
+<p>Like all respectable programming languages, in Python it is possible to define new functions.</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">square</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="k">return </span><span class="n">val </span><span class="o">* </span><span class="n">val</span>
+</pre></div>
+
+<p>The code inside a function occupies a single indented block. Of course, this block can contain
+its own sub-blocks in conditionals, or loops, or even other functions.</p>
+
+<p>Notice that we do not specify the types of our arguments or the type of our return
+value. These are determined at run time. A function which returns no value returns
+<code>None</code> by default.</p>
+
+<p>Here is an even better function:</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">square</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="cm">&quot;&quot;&quot; Return the square of the input val.
+
+        (number) -> number
+    &quot;&quot;&quot;</span>
+    <span class="k">return </span><span class="n">val </span><span class="o">* </span><span class="n">val</span>
+</pre></div>
+
+<p>The comment at the top of the function is called a docstring. Classes, functions,
+methods, and modules all should have docstrings. They are what is displayed
+when the <code>help</code> function is used.</p>
+
+<p>Docstrings for functions should include a typestring to indicate the intended
+types of the arguments and the return value. In a typestring use types that
+are the most general your function will accept. If the function <code>square</code>
+only accepted integer numbers then the typestring would be <code>(int) -> int</code>.
+</p>
+
+<!--
+&mdash; sort of.
+New variables are created for the arguments with the scope of the function body
+and pointed at whatever values were supplied when the function was called.</p>
+-->
+
+<p>Many Python objects are immutable, which means we cannot change them.
+This includes
+<code>int</code>,
+<code>float</code>, and
+<code>str</code>.
+We will explore this more in a future section of this tutorial, but for
+now assume that when you pass a value into a function and change this variable
+within the function, the original value will remain unchanged.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def </span><span class="n">square</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+        <span class="n">val </span><span class="o">*= </span><span class="n">val</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">= </span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">2</span>
+</pre></div>
+
+
+
+<p>Remember that in Python, everything is an object. Mutable objects passed as arguments to a function are <em>passed by reference</em>, while immutable
+objects are <em>passed by value</em>.
+
+<p>Functions are considered <em>immutable</em> objects.</p>
+
+<p>Since we can point variables at any object, including functions, it is possible to pass functions as arguments to other functions. If
+we have the following functions defined:</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="op">, </span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return </span><span class="n">x </span><span class="o">+ </span><span class="n">y</span>
+
+<span class="k">def </span><span class="n">sub</span><span class="p">(</span><span class="n">x</span><span class="op">, </span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return </span><span class="n">x </span><span class="o">- </span><span class="n">y</span>
+
+<span class="k">def </span><span class="n">apply</span><span class="p">(</span><span class="n">func</span><span class="op">, </span><span class="n">x</span><span class="op">, </span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return </span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">, </span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+<p>Then we can do the following:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">apply</span><span class="p">(</span><span class="n">add</span><span class="o">, </span><span class="mi">5</span><span class="o">, </span><span class="mi">6</span><span class="p">)</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">apply</span><span class="p">(</span><span class="n">sub</span><span class="o">, </span><span class="mi">5</span><span class="o">, </span><span class="mi">6</span><span class="p">)</span>
+<span class="go">-1</span>
+</pre></div>
+
+
+<p>Familiarise yourself with this concept. We will use it later for Exercise 2.</p>
+
+<p>When deciding the scope of variables in functions, Python always prefers
+local variables, if they exist.</p>
+
+<p>When assigning to a variable in a function, Python always creates a local
+variable, even if there is an existing global variable with the same name.</p>
+
+<!--
+<p>This latter behaviour can be overwritten by first using the <code>global</code> keyword
+within the function. For example, the following code will print <code>2</code>:</p>
+<div class="highlight"><pre>
+<span class="n">x </span><span class="o">= </span><span class="mi">1</span>
+<span class="k">def </span><span class="n">inc</span><span class="p">():</span>
+    <span class="k">global </span><span class="n">x</span>
+    <span class="n">x </span><span class="o">+= </span><span class="mi">1</span>
+<span class="k">print </span><span class="n">x</span>
+</pre></div>
+-->
+
+<p><b>TIP</b>: When you eventually write your own modules to put together functions and
+classes, and import them in the interactive interpreter, you will need to restart the interpreter and re-import the module if it changes.
+This means that it is probably easier to write script files to test your own modules,
+rather than using the interactive interpreter.</p>
+
+
+</div>
+
+<div class="section" id="exercise_1">
+<h2>Exercise 1: Math Functions &mdash; 5 Marks</h2>
+
+<p>For this exercise we want you to experiment with assignment statements and expressions
+using the built in
+<code>math</code>
+module.</p>
+
+<p>Try importing the
+<code>math</code>
+module and use the help function to see what it contains.</p>
+
+<p>Edit the file
+<code>math_functions.py</code>
+so that it does the following when run:</p>
+<ul>
+<li>
+Create a module variable called
+<code>ln_e</code>,
+whose value is the <em>natural</em> logarithm of
+<code>e</code> (use the values and functions from the
+<code>math</code> module);
+</li>
+<li>
+Create a module variable called
+<code>twenty_radians</code>
+and assign it whatever value a 20 degree angle would be in radians;
+</li>
+<li>
+Create two functions called
+<code>quotient_ceil</code> and
+<code>quotient_floor</code>,
+each of which takes two arguments, a numerator and a denominator, in that order.
+The first of these functions returns the ceiling of the numerator divided by the
+denominator, and the second returns the floor. Note, that here we are expecting
+floating point division to be performed, regardless of the types of the input arguments.
+We also expect an integer to be returned.
+</li>
+<li>
+Create a function called
+<code>manhattan</code>,
+which takes four arguments,
+<code>x1</code>,
+<code>y1</code>,
+<code>x2</code>, and
+<code>y2</code> and
+returns the Manhattan distance between the two points specified by these arguments.
+</li>
+</ul>
+
+<p><b>Remember</b> to submit the file <code>math_functions.py</code>.</p>
+
+<p>Our automarking programs will import
+<code>math_functions.py</code>,
+and check that these variables variables exist and have the correct values.
+<b>Your file should not print anything when imported.</b>
+</p>
+
+<p>Don't forget to edit the comment header at the top of the file and to add
+docstrings for all functions.
+</p>
+</div>
+
+<div class="section" id="boolean_expressions_conditionals">
+<h2>Boolean Expressions and Conditionals</h2>
+
+<p>Python has two special values
+<code>True</code> and
+<code>False</code>
+which represent truthhood and falsehood, respectively.</p>
+
+<p>These are returned by expressions involving Boolean operators.</p>
+
+<p>The following are the most important Boolean operators:
+<code>==</code>,
+<code>!=</code>,
+<code>&lt;</code>,
+<code>&lt;=</code>,
+<code>&gt;</code>,
+<code>&gt;=</code>,
+<code>is</code>,
+<code>is not</code>,
+<code>in</code>,
+<code>not in</code>,
+<code>not</code>,
+<code>and</code>,
+<code>or</code>.
+</p>
+
+<p>The meanings of most of these operators should be fairly clear.
+However, it is worth noting the difference between
+<code>==</code> and
+<code>is</code> (and between
+<code>!=</code> and
+<code>is not</code>).</p>
+
+<p>The equality operator
+<code>==</code>
+checks if two objects have the same value.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5 </span><span class="o">== </span><span class="mf">5.0</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">4 </span><span class="o">!= </span><span class="mi">4</span>
+<span class="go">False</span>
+</pre></div>
+
+
+<p>The <code>is</code>
+operator checks if two objects <strong>are</strong> the same. That is, if they are the same object then they have the same
+memory location, which can be found using the
+<code>id</code> function if you are interested.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">= </span><span class="s">[3, 2, 1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y </span><span class="o">= </span><span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z </span><span class="o">= </span><span class="s">[3, 2, 1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">== </span><span class="n">y</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">is </span><span class="n">y</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z </span><span class="o">== </span><span class="n">y</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z </span><span class="o">is </span><span class="n">y</span>
+<span class="go">False</span>
+</pre></div>
+
+
+<p>When comparing a value to
+<code>None</code>, you should use
+<code>is</code> and
+<code><span class="pre">is not</span></code>.
+</p>
+
+<p>When evaluating Boolean operators, or conditional statements, Python
+treats certain non-Boolean values as
+<code>True</code> and others as
+<code>False</code>.
+You can use the <code>bool</code>
+function to test this, but here are some useful ones:</p>
+<ul>
+<li>
+<code>False</code> &mdash;
+<code>None</code>,
+<code>0</code>,
+an empty string, tuple, list, set, or dictionary;
+</li>
+<li>
+<code>True</code> &mdash;
+Pretty much everything else.
+</li>
+</ul>
+
+<p>In Python, we can make conditionals with the keywords
+<code>if</code>,
+<code>elif</code>, and
+<code>else</code>.
+</p>
+
+<p>
+To make conditional statements we must make use of indentation. Python does not
+allow blocks of code to be delineated with brackets and
+it is considered bad style to wrap conditions in parentheses.</p>
+<div class="highlight"><pre>
+<span class="k">print(</span><span class="s">&quot;Enter your name:&quot;</span>)
+<span class="n">name </span><span class="o">= </span><span class="nb">input</span><span class="p">()</span>
+<span class="k">if </span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">) </span><span class="o">&gt; </span><span class="mi">10</span><span class="p">:</span>
+    <span class="k">print(</span><span class="s">&quot;That is a very long name!&quot;</span><span class="k">)</span>
+<span class="k">elif </span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">) </span><span class="o">&gt; </span><span class="mi">7</span><span class="p">:</span>
+    <span class="k">print(</span><span class="s">&quot;That is a somewhat long name.&quot;</span><span class="k">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print(</span><span class="s">&quot;That name is not long at all.&quot;</span><span class="k">)</span>
+    <span class="k">if </span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">) </span><span class="o">&gt; </span><span class="mi">5</span><span class="p">:</span>
+        <span class="k">print(</span><span class="s">&quot;In fact, it is very efficient.&quot;</span><span class="k">)</span>
+</pre></div>
+
+
+<p>You can have any number of lines in an indented block except zero.
+Use the
+<code>pass</code>
+keyword or a
+<code><span class="pre">&quot;&quot;&quot; Triple quote comment like this &quot;&quot;&quot;</span></code>,
+as a placeholder for an empty block, if required.
+</p>
+</div>
+
+<div class="section" id="while_loops">
+<h2>While Loops</h2>
+
+<p>In Python, while loops behave much like while loops in other procedural languages.</p>
+<div class="highlight"><pre>
+<span class="n">x </span><span class="o">= </span><span class="mi">0</span>
+<span class="k">while </span><span class="n">x </span><span class="o">&lt; </span><span class="mi">5</span><span class="p">:</span>
+    <span class="k">print(</span><span class="n">x</span><span class="k">)</span>
+    <span class="n">x </span><span class="o">+= </span><span class="mi">1</span>
+</pre></div>
+
+
+<p>Like blocks of code inside conditional statements, all code inside a while loop must
+be at the same indentation level.</p>
+
+<p>
+<code>break</code> and
+<code>continue</code>
+statements behave as you might expect.</p>
+</div>
+
+<div class="section" id="immutability_strings_tuples">
+<h2>Immutability, Strings, and Tuples</h2>
+
+<p>In Python, variables point to objects. Some of these objects are mutable
+(can be modified) and other are immutable (cannot be modified).</p>
+
+<p>Immutable object types include
+<code>int</code>,
+<code>float</code>,
+<code>str</code>, and
+<code>tuple</code>.</p>
+
+<p>Mutable object types, which we will cover in the next section, include
+<code>list</code>,
+<code>set</code>,
+<code>dict</code>, and
+instances of classes.</p>
+
+<p>The assignment operator in Python operates differently than one might expect coming
+from C++ or Java. Try the following and note the memory addresses returned by the <code>id</code> functions.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">= </span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">10105952</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">+= </span><span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">10105984</span>
+</pre></div>
+
+
+<p>This immutability extends to some more complex types,
+which may surprise the uninitiated programmer.</p>
+
+<p>First, lets look at strings, which have the type
+<code>str</code>.</p>
+
+<p>
+We have already seen some basic string behaviour and we will cover iterating over strings
+and other sequences in a later section.</p>
+
+<p>
+In the following example, the method
+<code>lower</code>
+returns a new
+<code>str</code>
+<code>&quot;hello&quot;</code>.
+The variable <code>greeting</code>
+still points to the value
+<code>&quot;Hello&quot;</code>.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting </span><span class="o">= </span><span class="s">&quot;Hello&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="go">&quot;hello&quot;</span>
+</pre></div>
+
+
+<p>Python uses square brackets to index into sequences. Continuing the previous example:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&quot;H&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="mi">-1</span><span class="p">]</span>
+<span class="go">&quot;o&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="mi">-2</span><span class="p">]</span>
+<span class="go">&quot;l&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="mi">-10</span><span class="p">]</span>
+<span class="go">Traceback (most recent call last):</span>
+  <span class="go">File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span>
+<span class="gr">IndexError</span><span class="go">: string index out of range</span>
+</pre></div>
+
+
+<p>Square brackets are also used to 'slice' a string, that is to extract a specified
+sub-string. Using a negative number as an index, counts back from the end of a string.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">&quot;He&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">-1</span><span class="p">]</span>
+<span class="go">&quot;ell&quot;</span>
+</pre></div>
+
+
+<p>Either of the start or end index can be omitted and they default to the start and end of the string.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="p">:</span><span class="p">]</span>
+<span class="go">&quot;Hello&quot;</span>
+</pre></div>
+
+
+<p>Note that none of these operations are modifying the original string (because it is immutable),
+they are returning new strings.</p>
+
+<p>When slicing, an optional second colon can be supplied to give a third argument which
+specifies the step.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="p">:</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">&quot;Hlo&quot;</span>
+</pre></div>
+
+
+<p>The step can even be negative:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">greeting</span><span class="p">[</span><span class="p">:</span><span class="p">:</span><span class="mi">-1</span><span class="p">]</span>
+<span class="go">&quot;olleH&quot;</span>
+</pre></div>
+
+<p>When slicing, indices that extend beyond the ends of a string will not cause an error,
+they simply retult in an empty slice being returned.</p>
+
+<p>We can check for the presence of a sub-string in a string using the Boolean
+<code>in</code> and
+<code><span class="pre">not in</span></code> operators.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;He&quot; </span><span class="k">in </span><span class="n">greeting</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;l&quot; </span><span class="k">not in </span><span class="n">greeting</span>
+<span class="go">False</span>
+</pre></div>
+
+
+<p>The
+<code>in</code> and
+<code><span class="pre">not in</span></code> operators
+will also work for tuples, lists, sets, and dictionaries.</p>
+
+<p>
+For strings, tuples, and lists it has linear time complexity. It is constant time
+for sets and dictionaries.</p>
+
+<p>
+<code>tuple</code>
+is another very important immutable type, which allows us to store sequences of arbitrary values.</p>
+
+<p>An empty
+<code>tuple</code> is made as follows:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tup </span><span class="o">= </span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
+<span class="go">tuple</span>
+</pre></div>
+
+
+<p>A
+<code>tuple</code>
+with one element are made as follows. The trailing comma is not a typo:</p>
+<div class="highlight"><pre>
+<span class="n">tup </span><span class="o">= </span><span class="p">(</span><span class="s">&quot;One&quot;</span><span class="p">,)</span>
+</pre></div>
+
+
+<p>And multiple elements:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords </span><span class="o">= </span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">, </span><span class="mi">-3</span><span class="p">, </span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="n">coords</span><span class="k">)</span>
+<span class="go">(&quot;Home&quot;, -3, 6)</span>
+</pre></div>
+
+
+<p>We can access the elements of tuples just like we can with strings.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">-3</span>
+</pre></div>
+
+
+<p>Slicing also works the same.</p>
+
+<p>Because tuples are immutable (and therefore hashable) they are particularly
+important for storing sequences in sets and as keys in dictionaries.</p>
+
+<p>Now that we have covered string and another iterable type it is a good time
+to mention two very useful string methods.
+These transform between any iterable type, such as
+<code>str</code>,
+<code>tuple</code>,
+<code>list</code>,
+<code>set</code>, and
+<code>dict</code>.</p>
+
+
+<p>First,
+<code>split</code>,
+which takes a string and given a specified delimiter, will
+return a
+<code>list</code>
+of tokens separated by this delimiter. We will cover lists after the next exercise.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;Hello world. What a lovely day.&quot;</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)</span>
+<span class="go">[&quot;Hello&quot;, &quot;world.&quot;, &quot;What&quot;, &quot;a&quot;, &quot;lovely&quot; &quot;day.&quot;]</span>
+</pre></div>
+
+
+<p>If no separator string is specified, any white-space character will be used.</p>
+
+<p>Next, we can take a sequence of strings, or just a string, and join its elements with the
+specified separator.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;, &quot;</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="go">&quot;H, e, l, l, o&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot; : &quot;</span><span class="p">.</span><span class="n">join</span><span class="p">((</span><span class="s">&quot;One&quot;</span><span class="p">, </span><span class="s">&quot;Two&quot;</span><span class="p">, </span><span class="s">&quot;Three&quot;</span><span class="p">))</span>
+<span class="go">&quot;One : Two : Three&quot;</span>
+</pre></div>
+
+<p>You will need to convert each elements of a sequence to a <code>str</code> before joining.
+The <code>map</code> function is one way to do this.
+List comprehensions, covered at the end of this tutorial, are another way.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">= </span><span class="p">(</span><span class="mi">1</span><span class="p">, </span><span class="mi">2</span><span class="p">, </span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">tuple(map</span><span class="p">(</span><span class="nb">str</span><span class="p">, </span><span class="n">x</span><span class="p">))</span>
+<span class="go">(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+
+</div>
+
+<div class="section" id="exercise_2">
+<h2>Exercise 2: Generating Truth Tables &mdash; 10 Marks</h2>
+
+<p>Later in this course you will cover Boolean Satisfiability and use it to
+encode and solve decision problems.</p>
+
+<p>By now you should all be familiar with Boolean expressions
+and how to evaluate and manipulate them.</p>
+
+<p>In this exercise you will use your knowledge of conditional expressions,
+while loops, and strings to generate the truth tables for some Boolean expressions.</p>
+
+<p>Say we have a Boolean expression:
+<code><span class="pre">(a &or; b) &and; (-b &or; c) &and; (-c &or; -a)</span></code>
+over the variables
+<code>a</code>,
+<code>b</code>, and
+<code>c</code>.
+</p>
+
+<p>
+We have a truth table which describes how the expression evaluates for given values of
+<code>a</code>,
+<code>b</code>, and
+<code>c</code>:</p>
+<pre>
+a     b     c     res
+-----------------------
+False False False False
+False False True  False
+False True  False False
+False True  True  True
+True  False False True
+True  False True  False
+True  True  False False
+True  True  True  False
+</pre>
+
+<p>
+Edit the supplied file
+<code>truth_tables.py</code>,
+and include the following functions.
+</p>
+
+<p>First, some functions to implement a set of Boolean formulae:</p>
+<ol>
+<li>
+<code><span class="pre">boolean_fn1(a, b, c)</span></code> -
+ which returns the truth value of
+ <code><span class="pre">(a &or; b) &rarr; (-a &and; -b)</span></code>
+</li>
+<li>
+<code><span class="pre">boolean_fn2(a, b, c)</span></code> -
+ which returns the truth value of
+ <code><span class="pre">(a &and; b) &or; (-a &and; -b)</span></code>
+</li>
+<li>
+<code><span class="pre">boolean_fn3(a, b, c)</span></code> -
+ which returns the truth value of
+ <code><span class="pre">
+ ((c &rarr; a) &and; (a &and; -b)) &or; (-a &and; b)</span></code>
+</li>
+</ol>
+
+
+<p>
+You will need to simplify these formulae into formulae using only
+<code>not</code>,
+<code>and</code>, and
+<code>or</code>.
+</p>
+
+<p> Remember
+<code><span class="pre">a &rarr; b</span></code> is
+equivalent to
+<code><span class="pre">-a &or; b</span></code>, which
+can be written in Python as
+<code><span class="pre">not a or b</span></code>.
+</p>
+
+<p>Next, implement the following function in the same file:</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">draw_truth_table</span><span class="p">(</span><span class="n">boolean_fn</span><span class="p">):</span>
+    <span class="cm">&quot;&quot;&quot; This function prints a truth table for the given boolean function.
+        It is assumed that the supplied function has three arguments.
+
+        ((bool, bool, bool) -> bool) -> None
+    &quot;&quot;&quot;</span>
+</pre></div>
+
+
+<p>You can then test this function by running
+<code>draw_truth_table(boolean_fn1)</code>, for example.
+</p>
+
+<p>Each function should display the truth table according to the formula using the same format of the example above.</p>
+
+<p>We will import your file
+<code>truth_tables.py</code>
+and test the functions you have implemented. The file should not produce any
+output when imported.
+Our auto-marking code will expect the output to be exactly as specified.</p>
+
+<p>Please avoid the use of the itertools module which is described at the end
+of this tutorial. We want you to demonstrate your ability to use the basic
+constructs of Python (and you will appreciate this module so much more when you have
+done this exercise manually).</p>
+
+<p>As a final hint, remember that when evaluating conditional expressions,
+Python considers
+<code>0</code> to be
+<code>False</code> and all
+other integer values to be
+<code>True</code>.
+</p>
+</div>
+
+<div class="section" id="mutable_types_lists_sets_dictionaries">
+<h2>Mutable Types &mdash; Lists, Sets, and Dictionaries</h2>
+
+<p>Lists are a lot like tuples except we can change the contents of a list.</p>
+
+<p>Empty lists are made as follows:</p>
+<div class="highlight"><pre>
+<span class="n">students </span><span class="o">= </span><span class="p">[]</span>
+</pre></div>
+
+
+<p>We can also create a list which starts with some things in it:</p>
+<div class="highlight"><pre>
+<span class="n">students </span><span class="o">= </span><span class="p">[</span><span class="s">&quot;Ludwig&quot;</span><span class="p">, </span><span class="s">&quot;Simone&quot;</span><span class="p">, </span><span class="mi">4</span><span class="p">, </span><span class="mf">1.2</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Unlike tuples, we can add and remove elements from a list.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students </span><span class="o">= </span><span class="p">[</span><span class="s">&quot;Ludwig&quot;</span><span class="p">, </span><span class="s">&quot;Simone&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students</span>
+<span class="go">[&quot;Ludwig&quot;, &quot;Simone&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students.append</span><span class="p">(</span><span class="s">&quot;Bertrand&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students</span>
+<span class="go">[&quot;Ludwig&quot;, &quot;Simone&quot;, &quot;Bertrand&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">= </span><span class="n">students</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="n">.upper</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students</span>
+<span class="go">[&quot;LUDWIG&quot;, &quot;Simone&quot;, &quot;Bertrand&quot;]</span>
+</pre></div>
+
+
+<p>
+Use the help function to explore the methods which can be used to modify lists.
+</p>
+
+<p>Python also comes with a set of functions which work specifically with lists, tuples, etc.
+ The most important of these is the
+ <code>len</code> function,
+which returns the length of the given list.
+The <code>min</code>,
+<code>max</code>, and
+<code>sum</code> functions
+are also very useful.
+</p>
+
+<p>Lists have constant-time indexed access.
+The time complexity of many Python operations
+can be found
+  <a href="https://wiki.python.org/moin/TimeComplexity" target="_blank">here</a>.
+</p>
+
+<p>Lists can be sorted in place using the <code>sort</code> method.
+There is also a built in function <code>sorted</code> which will accept any iterable
+object and return a new sorted list with its contents.
+Details about sorting in Python can be found
+<a href="https://wiki.python.org/moin/HowTo/Sorting" target="_blank">here</a>.</p>
+
+<p>Python contains a powerful
+<code>set</code>
+type.</p>
+
+<p>Sets are like lists except:</p>
+<ul>
+<li> They do not admit duplicates;
+</li>
+<li> Are unordered;
+</li>
+<li> Can only contain immutable (and therefore hashable) values; and
+</li>
+<li> Have constant time memberships tests (it is linear time to check membership in a list).
+</li>
+</ul>
+
+
+<p>
+An empty set can be created as follows:</p>
+<div class="highlight"><pre>
+<span class="n">students </span><span class="o">= </span><span class="nb">set</span><span class="p">()</span>
+</pre></div>
+
+
+<p>
+A set with contents can be created by passing it a list or tuple (or other iterable object).</p>
+<div class="highlight"><pre>
+<span class="n">students </span><span class="o">= </span><span class="nb">set</span><span class="p">([</span><span class="s">&quot;Ludwig&quot;</span><span class="p">, </span><span class="s">&quot;Simone&quot;</span><span class="p">, </span><span class="s">&quot;Bertrand&quot;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>We can add and remove elements from a set as follows:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students.add</span><span class="p">(</span><span class="s">&quot;Ludwig&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students.remove</span><span class="p">(</span><span class="s">&quot;Bertrand&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">students</span>
+<span class="go">set([&quot;Ludwig&quot;, &quot;Simone&quot;])</span>
+</pre></div>
+
+
+<p>Note that lists, sets, and dictionaries cannot be added to sets because they are not hashable.
+Instead use tuples or frozensets.</p>
+
+<p>There are lots of very useful set functions with very nice time complexities,
+so use the help function (or documentation) to check them out.</p>
+
+
+<p>Dictionaries are like associative array. They associate immutable keys with
+mutable or immutable values.</p>
+
+<p>Dictionaries are created as follows:</p>
+<div class="highlight"><pre>
+<span class="n">ages </span><span class="o">= </span><span class="p">{}</span>
+</pre></div>
+
+
+<p>Access is usually performed with the square brackets.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ages</span><span class="p">[</span><span class="s">&quot;Bertrand&quot;</span><span class="p">] </span><span class="o">= </span><span class="mi">142</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ages</span><span class="p">[</span><span class="s">&quot;Ludwig&quot;</span><span class="p">] </span><span class="o">= </span><span class="mi">125</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ages</span><span class="p">[</span><span class="s">&quot;Bertrand&quot;</span><span class="p">] </span><span class="o">= </span><span class="mi">-1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ages</span><span class="p">[</span><span class="s">&quot;Ludwig&quot;</span><span class="p">] </span>
+<span class="go">125</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ages</span><span class="p">[</span><span class="s">&quot;Bertrand&quot;</span><span class="p">] </span>
+<span class="go">-1</span>
+</pre></div>
+
+
+<p>It is possible for a value in a dictionary to be any object, including a mutable
+object like a list (or another dictionary).</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">works </span><span class="o">= </span><span class="p">{</span><span class="s">&quot;Ludwig&quot; </span><span class="p">: [], </span><span class="s">&quot;Bertrand&quot; </span><span class="p">: []}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">works</span><span class="p">[</span><span class="s">&quot;Bertrand&quot;</span><span class="p">] </span><span class="o">= </span><span class="p">[</span><span class="s">&quot;Principia Mathematica&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">works</span><span class="p">[</span><span class="s">&quot;Bertrand&quot;</span><span class="p">]</span><span class="n">.append</span><span class="p">(</span><span class="s">&quot;What I believe&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">works</span><span class="p">[</span><span class="s">&quot;Ludwig&quot;</span><span class="p">]</span><span class="n">.append</span><span class="p">(</span><span class="s">&quot;Tractatus&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">works</span>
+<span class="go">{&quot;Bertrand&quot;: [&quot;Principia Mathematica&quot;, &quot;What I believe&quot;], &quot;Ludwig&quot;: [&quot;Tractatus&quot;]}</span>
+</pre></div>
+
+
+<p>Assuming a dictionary
+<code>d</code>
+is not too large, then the following could be used to make it hashable so we can
+put it in a set or use it as the key in another dictionary:</p>
+<div class="highlight"><pre>
+<span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">d.items</span><span class="p">()))</span>
+</pre></div>
+
+
+<p>One important thing, which we need to mention here is that variables
+can point to the same value. If that value is mutable, then changes made with one
+variable will affect the other variable.</p>
+
+<p>
+This can be avoided by making a copy of the list, set, etc. as follows:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">= </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y </span><span class="o">= </span><span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z </span><span class="o">= </span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x.append</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">[1, 2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
+<span class="go">[1, 2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span>
+<span class="go">[1, 2]</span>
+</pre></div>
+
+
+<p>Use the functions
+<code>set</code> and
+<code>dict</code> to make
+copies of sets and dictionaries.
+</p>
+
+<p>
+More generally, objects can be copied using the
+<code>copy</code> and
+<code>deepcopy</code> functions in the
+<code>copy</code> module.
+</p>
+
+<p>The type functions and the
+<code>copy</code>
+function will copy an object, but not make copies of
+its attributes.</p>
+
+<p> The <code>deepcopy</code>
+function will recursively copy an object and its attributes.
+</p>
+</div>
+
+<div class="section" id="functions_mutability_default_arguments">
+<h2>Functions Redux &mdash; Mutability and Default Arguments</h2>
+
+<p>
+Earlier we saw that a function cannot affect immutable objects when passed as
+arguments. However, we have since met some mutable objects and if these are
+supplied as arguments they can be changed within a function.
+</p>
+
+<p>Given a function:</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">increase_list</span><span class="p">(</span><span class="named">l</span><span class="p">):</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">] </span><span class="o">+= </span><span class="mi">1</span>
+</pre></div>
+
+
+<p>The following can happen:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">= </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">increase_list</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">[2, 2]</span>
+</pre></div>
+
+
+<p>Remember, assignment never changes a value, it only points a variable at a new value.</p>
+
+<p>Python uses a reference-counting based garbage collection scheme.
+Any variables created within the scope of the function to which no references
+remain after the function terminates will be garbage collected.
+If you are having issues with garbage collection, methods on
+<a href="http://docs.python.org/3/library/gc.html" target="_blank">this page</a>
+will help with debugging.</p>
+
+<p>Python allows us to specify default values for the arguments of functions.
+All arguments without default values must come before any argument with a default value.
+</p>
+
+<p>Here is an example of a function with default arguments:</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">confirm_order</span><span class="p">(</span><span class="n">prompt</span><span class="p">, </span><span class="n">retries</span><span class="o">=</span><span class="mi">3</span><span class="p">, </span><span class="n">complaint</span><span class="o">=</span><span class="s">&quot;Error (yes/no) required&quot;</span><span class="p">):</span>
+    <span class="p">...</span>
+</pre></div>
+
+
+<p>We can then supply a variable number of arguments which are evaluated positionally.
+In addition to positional arguments, we can specify some number of keyword arguments
+where the name of the argument is explicitly specified with the associated value.
+Keyword arguments must be supplied after all non-keyword arguments.</p>
+
+<p>The following are all valid calls to the
+<code>confirm_order</code> function:</p>
+<div class="highlight"><pre>
+<span class="n">confirm_order</span><span class="p">(</span><span class="s">&quot;Please confirm&quot;</span><span class="p">)</span>
+<span class="n">confirm_order</span><span class="p">(</span><span class="s">&quot;Please confirm&quot;</span><span class="p">, </span><span class="mi">2</span><span class="p">)</span>
+<span class="n">confirm_order</span><span class="p">(</span><span class="s">&quot;Please confirm&quot;</span><span class="p">, </span><span class="n">complaint</span><span class="o"> = </span><span class="s">&quot;Oh come on, really?&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+
+<p>The default values are evaluated at the point of function definition in the defining scope:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i </span><span class="o">= </span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def </span><span class="n">f</span><span class="p">(</span><span class="n">arg</span><span class="o">=</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">print(</span><span class="n">arg</span>)
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i </span><span class="o">= </span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">()</span>
+<span class="go">5</span>
+</pre></div>
+
+
+<p>Important warning: The default value is evaluated only once.
+This makes a difference when the default is a mutable object such as a list, dictionary,
+or instances of most classes. For example, the following function accumulates the
+arguments passed to it on subsequent calls:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def </span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">, </span><span class="n">l</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="n">l.append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">return </span><span class="n">l</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">[1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">[1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">[1, 2, 3]</span>
+</pre></div>
+
+
+<p>Recursion in Python is quite inefficient as it does not do tail call elimination.
+If speed is required, it is recommended to use iteration instead of recursion.
+While outside the scope of this tutorial, Python provides a way to create
+<a href="https://wiki.python.org/moin/Generators" target="_blank">generating functions</a>,
+which can be used as an alternative to recursion.
+</p>
+</div>
+
+<div class="section" id="iterators">
+<h2>Iterators</h2>
+
+<p>In Python, some objects are iterable. The containers we have seen are examples
+of iterable objects. We will cover a few other useful iterators here.</p>
+
+
+<p>Lets say that we want to access all of the elements in a string, list, or set, tuple,
+or the keys of a dictionary called <code>container</code>.
+It is as simple as follows:</p>
+<div class="highlight"><pre>
+<span class="k">for </span><span class="n">item </span><span class="k">in </span><span class="n">container</span><span class="p">:</span>
+    <span class="p">...</span>
+</pre></div>
+
+
+<p>Remember, sets and dictionaries are not ordered, so the for loop will access
+the elements of these containers in an arbitrary order.</p>
+
+<p>What if we want to access the values in a dictionary?</p>
+
+<p>There are six useful iteration methods we should know about.
+First, there are three,
+<code>keys</code>,
+<code>values</code>, and
+<code>items</code>
+which return <emph>iterables</emph> of keys, values, and key-value pairs (as tuples) respectively.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alph </span><span class="o">= </span><span class="p">{</span><span class="s">&quot;a&quot; </span><span class="p">: </span><span class="mi">1</span><span class="p">, </span><span class="s">&quot;b&quot; </span><span class="p">: </span><span class="mi">2</span><span class="p">, </span><span class="s">&quot;c&quot; </span><span class="p">: </span><span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">[d <span class="k">for</span> d <span class="k">in</span> alph.keys</span><span class="p">()]</span>
+<span class="go">[&quot;b&quot;, &quot;a&quot;, &quot;c&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">[v <span class="k">for</span> v <span class="k">in</span> alph.values</span><span class="p">()]</span>
+<span class="go">[1, 3, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">[i <span class="k">for</span> i <span class="k">in</span> alph.items</span><span class="p">()]</span>
+<span class="go">[(&quot;a&quot;, 1), (&quot;b&quot;, 2), (&quot;c&quot;, 3)]</span>
+</pre></div>
+
+
+<p>We could then iterate over any of these with a for loop.</p>
+
+<p>Each element of the items
+list is a tuple containing the key and value pairs. We need to unpack these tuples
+to use the key and value.</p>
+<div class="highlight"><pre>
+<span class="k">for </span><span class="n">kv_pair </span><span class="k">in </span><span class="n">alph.items</span><span class="p">():</span>
+    <span class="n">key</span><span class="p">, </span><span class="n">value </span><span class="o">= </span><span class="n">kv_pair</span>
+    <span class="p">...</span>
+</pre></div>
+
+
+<p>More elegantly:</p>
+<div class="highlight"><pre>
+<span class="k">for </span><span class="n">key</span><span class="p">, </span><span class="n">value </span><span class="k">in </span><span class="n">alph.items</span><span class="p">():</span>
+    <span class="p">...</span>
+</pre></div>
+
+
+<p>And less elegantly:</p>
+<div class="highlight"><pre>
+<span class="k">for </span><span class="n">key </span><span class="k">in </span><span class="n">alph.keys</span><span class="p">():</span>
+    <span class="n">value </span><span class="o">= </span><span class="n">alph</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="p">...</span>
+</pre></div>
+
+
+<p>Next, there are a few very helpful functions which play nice with for loops
+and make life in Python much nicer.</p>
+
+<p>Say we want to access the elements in a list, string using a numerical index. How
+could we generate a sequence of these indexes?</p>
+
+<p>A while loop would work, but it is a bit cumbersome. So, we use the
+<code>range</code> function:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">[0, 1, 2, 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">, </span><span class="mi">8</span><span class="p">)</span>
+<span class="go">[3, 4, 5, 6, 7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">, </span><span class="mi">10</span><span class="p">, </span><span class="mi">2</span><span class="p">)</span>
+<span class="go">[2, 4, 6, 8]</span>
+</pre></div>
+
+<p>So, we can do the following:</p>
+<div class="highlight"><pre>
+<span class="n">week_days </span><span class="o">= </span><span class="p">[</span><span class="s">&quot;Monday&quot;</span><span class="p">, </span><span class="s">&quot;Tuesday&quot;</span><span class="p">, </span><span class="s">&quot;Wednesday&quot;</span><span class="p">, </span><span class="s">&quot;Thursday&quot;</span><span class="p">, </span><span class="s">&quot;Friday&quot;</span><span class="p">]</span>
+<span class="k">for </span><span class="n">day_no </span><span class="k">in </span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">week_days</span><span class="p">)):</span>
+    <span class="k">print(</span><span class="s">&quot;Day number {} is {}&quot;</span>.format(<span class="n">day_no</span>,<span class="n">week_days</span><span class="p">[</span><span class="n">day_no</span><span class="p">]</span>)<span class="k">)</span>
+</pre></div>
+
+
+<p>Which will print:</p>
+<pre>
+Day number 0 is Monday
+Day number 1 is Tuesday
+...
+</pre>
+
+<p>Alternatively, we can use the enumerate function (which is very handy for accessing
+parallel lists):</p>
+<div class="highlight"><pre>
+<span class="k">for </span><span class="n">day_no</span><span class="p">, </span><span class="n">day </span><span class="k">in </span><span class="nb">enumerate</span><span class="p">(</span><span class="n">week_days</span><span class="p">):</span>
+    <span class="k">print( </span><span class="s">&quot;Day number&quot;</span><span class="p">, </span><span class="n">day_no</span><span class="p">, </span><span class="s">&quot;is&quot;</span><span class="p">, </span><span class="n">day</span><span class="k">)</span>
+</pre></div>
+
+
+<p>The
+<code>enumerate</code>
+function returns an iterator which returns a sequence of tuples.
+The first element of each tuple is the index corresponding to the value in the
+second element.</p>
+
+<p>
+<code>enumerate</code>
+will work on sets and dictionaries, but elements are accessed
+in an arbitrary order and will therefore have arbitrary indexes (which cannot
+be used to access the set or dictionary).</p>
+</div>
+
+<div class="section" id="files">
+<h2>Files</h2>
+
+<p>In Python files can be accessed via a built in
+<code>file</code> type.</p>
+
+<p>To create a file object use the
+<code>open</code> function:</p>
+<div class="highlight"><pre>
+<span class="n">student_file </span><span class="o">= </span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;students.txt&quot;</span><span class="p">, </span><span class="s">&quot;r&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The first argument is the name of the file to be opened. Paths are assumed to
+either be absolute or relative to the directory from which the Python script
+(or interactive interpreter) is run.</p>
+
+<p>For tools to deal with file paths see the built in
+<code>os.path</code> module.</p>
+
+<p>The second argument is an optional string containing an access mode for the file.
+The mode can be &quot;r&quot; to read the file, &quot;w&quot; to (over)write the file, and
+&quot;a&quot; to append to the file. The default value is &quot;r&quot;.</p>
+
+<p>For more details about access modes, and how Windows handles end of line characters
+(if for some crazy reason you work in Windows) go
+<a href="http://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files" target="_blank">here</a>.
+</p>
+
+<p>We can read from a file in a number of ways.</p>
+
+<p>First, the
+<code>read</code>
+method will return a string containing the entire contents.</p>
+<div class="highlight"><pre>
+<span class="n">contents </span><span class="o">= </span><span class="n">student_file.read</span><span class="p">()</span>
+</pre></div>
+
+<p>Maybe more practically, the file object is iterable and can be used in a for
+loop as follows:</p>
+<div class="highlight"><pre>
+<span class="k">for </span><span class="n">line </span><span class="k">in </span><span class="n">student_file</span><span class="p">:</span>
+    <span class="k">print(</span><span class="n">line</span>)
+</pre></div>
+
+
+<p>Try this with a file and you will notice something strange about the result.
+Python will print a blank line between each line from the file. This quirk is
+common to all methods of accessing lines from files in Python. It comes about
+because when a line is read from a file, it has a newline character on the end.</p>
+
+<p>This can be avoided by as follows:</p>
+<div class="highlight"><pre>
+<span class="k">for </span><span class="n">line </span><span class="k">in </span><span class="n">student_file</span><span class="p">:</span>
+    <span class="n">line </span><span class="o">= </span><span class="n">line</span><span class="p">[:</span><span class="mi">-1</span><span class="p">]</span>
+    <span class="k">print(</span><span class="n">line</span>)
+</pre></div>
+
+
+<p>Alternatively, to remove all whitespace around a line:</p>
+<div class="highlight"><pre>
+<span class="k">for </span><span class="n">line </span><span class="k">in </span><span class="n">student_file</span><span class="p">:</span>
+    <span class="n">line </span><span class="o">= </span><span class="n">line.strip</span><span class="p">()</span>
+    <span class="k">print(</span><span class="n">line</span>)
+</pre></div>
+
+
+<p>
+We can alternatively access the next line in a file with the
+<code>readline</code> method.
+<code>readline</code> will
+return an empty string if there is  no more of the file left to read.
+So, we can read the file as follows:</p>
+<div class="highlight"><pre>
+<span class="k">while </span><span class="bp">True</span><span class="p">:</span>
+    <span class="n">line </span><span class="o">= </span><span class="n">student_file.readline</span><span class="p">()</span>
+    <span class="k">if not </span><span class="n">line</span><span class="p">: </span><span class="k">break</span>
+    <span class="p">...</span>
+</pre></div>
+
+
+<p>All of the lines in a file can be read at once using the
+<code>readlines</code> method.
+This returns a list containing strings, each of which contains a line of the
+file. Each of these strings will be terminated with a newline character.</p>
+
+<p>After you are finished with a file, you should close it with the
+<code>close</code> method.</p>
+
+<p>An alternative to manually closing a file, is to use the
+<code>with</code> keyword as follows:</p>
+<div class="highlight"><pre>
+<span class="k">with </span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;students.txt&quot;</span><span class="p">) </span><span class="k">as </span><span class="n">student_file</span><span class="p">:</span>
+    <span class="k">for </span><span class="n">line </span><span class="k">in </span><span class="n">student_file</span><span class="p">:</span>
+        <span class="p">...</span>
+</pre></div>
+
+
+<p>When the code in the indented block has been executed, or when an exception is
+raised, Python will close the file.</p>
+
+<p>
+Writing to a file is handled with the
+<code>write</code> and
+<code>writelines</code> methods.
+The
+<code>write</code>
+method takes a string as an argument and the
+<code>writelines</code> method
+takes an iterable containing strings.</p>
+
+<p>The <code>write</code> and
+<code>writelines</code>
+ methods expect you to supply your own newline characters if you require them.</p>
+
+<p>Finally, you may need to use the
+<code>flush</code>
+method to flush the output buffer. This
+will occur automatically when a file is closed.</p>
+</div>
+
+<div class="section" id="exercise_3">
+<h2>Exercise 3. Deterministic Finite Automata &mdash; 15 Marks</h2>
+
+<p>You will write a program to read in a text file containing a graph representing
+a deterministic finite automaton (DFA). You will then write a function to test if the
+DFA accepts a given word.</p>
+
+<p> If you need to refresh your memory about DFAs, you can look at the
+ relevant
+<a href="https://en.wikipedia.org/wiki/Deterministic_finite_automaton" target="_blank">Wikipedia page</a>.
+</p>
+
+<p>For our purposes, a DFA is a multigraph with directed, labelled edges and
+the following properties:</p>
+<ul>
+<li>
+Nodes represent states;
+</li>
+<li>
+Edges represent transitions between states;
+</li>
+<li>
+There is a single node representing the initial state;
+</li>
+<li>
+There is a set of nodes representing accepting states;
+</li>
+<li>
+The labels on the outgoing edges at a given node are distinct individual
+characters.
+</li>
+</ul>
+
+<p>A DFA can be used to accept or reject words.
+The DFA starts in the start state and we are initially reading character
+<code>0</code> of a word <code>l</code>.</p>
+
+<p>We apply the following rules. If a DFA is in a state
+<code>s</code>, reading
+character with index <code>n</code>
+of word <code>l</code>,
+then there are four possibilities:</p>
+<ol>
+<li>
+If <code><span class="pre">n = len(l)</span></code>
+and <code>s</code> is an accepting state,
+the automaton accepts <code>l</code>; otherwise
+</li>
+<li>
+If <code><span class="pre">n = len(l)</span></code>
+and <code>s</code> is not an accepting state,
+the automaton rejects <code>l</code>; otherwise
+</li>
+<li>
+If <code>s</code> has an outgoing
+edge labelled with <code>l[n]</code>,
+the automaton transitions to the successor state and increments
+<code>n</code>; otherwise
+</li>
+<li>
+The automaton rejects <code>l</code>.
+</li>
+</ol>
+
+<p>Here is an example automaton that accepts the words <code>to</code> and
+<code>two</code>. <code>s0</code> is the start state and <code>s2</code>, <code>s4</code> are the
+accepting states.</p>
+
+<div class="imgclass">
+<img src="automaton.jpg" alt="DFA" width="519" style="horizontal-align:center">
+</div>
+
+<p>Example automata files are provided in the <code>exercise3_dfa</code> subdirectory of the
+assignment files.</p>
+
+<p>In these files, all lines consist of whitespace delimited tokens.
+There are three such types of line:</p>
+<ol>
+<li>
+<code>initial s</code> &mdash; where <code>s</code> represents the name of the
+starting (initial) state.
+</li>
+<li>
+<code>accepting s0 ... sn</code> &mdash; where <code>s0 ... sn</code> is a space-separated list of names of
+accepting states.
+</li>
+<li>
+<code>transition s0 s1 label</code> &mdash; where <code>s0</code> and <code>s1</code>
+are the start and end states of the transition and <code>label</code> is the label
+of the edge. Labels are a single character.
+</li>
+</ol>
+
+<p>You are not required to check for error conditions when reading the automata
+files and may assume that correctly formatted input will be supplied.</p>
+
+<p>Edit the supplied file
+<code>dfa.py</code> to complete this exercise.
+As with the previous exercises, it should be commented appropriately.</p>
+
+<p>Within this file, you are free to create any functions, variables, etc., but the following
+functions are required:</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">load_dfa</span><span class="p">(</span><span class="n">dfa_file_name</span><span class="p">):</span>
+    <span class="s">&quot;&quot;&quot; This function reads the DFA in the specified file and returns a
+        data structure representing it. It is up to you to choose an appropriate
+        data structure. The returned DFA will be used by your accepts_word
+        function. Consider using a tuple to hold the parts of your DFA, one of which
+        might be a dictionary containing the edges.
+
+        We suggest that you return a tuple containing the names of the start
+        and accepting states, and a dictionary which represents the edges in
+        the DFA.
+
+        (str) -> Object
+    &quot;&quot;&quot;</span>
+
+<span class="k">def </span><span class="n">accepts_word</span><span class="p">(</span><span class="n">dfa</span><span class="p">, </span><span class="n">word</span><span class="p">):</span>
+    <span class="s">&quot;&quot;&quot; This function takes in a DFA (that is produced by your load_dfa function)
+        and then returns True if the DFA accepts the given word, and False
+        otherwise.
+
+        (Object, str) -> bool
+    &quot;&quot;&quot;</span>
+</pre></div>
+
+<p>Test your code with the supplied DFAs. They should accept exactly the following words
+(case sensitive):</p>
+<ul>
+<li>
+<code>test1.dfa</code> &mdash; <code>planning</code>, <code>satisfiability</code>,
+    <code>search</code>, <code>reinforcement</code>, <code>learning</code>.
+</li>
+<li>
+<code>test2.dfa</code> &mdash; <code>sang</code>, <code>sing</code>, <code>song</code>,
+    <code>sung</code>.
+</li>
+<li>
+<code>test3.dfa</code> &mdash; <code>0</code>, <code>01</code>, <code>010</code>, <code>0101</code>, <code>01010</code>, <code>010101</code>, <code>0101010</code>, <code>01010101</code>, <code>010101010</code>, <code>0101010101</code>.
+</li>
+</ul>
+
+
+<p>We will test this project by importing your file and loading a number of DFAs.
+When the file is imported, nothing should be printed to the screen.
+We will check that you correctly use these DFAs to accept and reject words.</p>
+
+<p>Include your completed <code>dfa.py</code> with the submission of your assignment.</p>
+
+</div>
+
+<div class="section" id="classes_methods">
+<h2>Classes and Methods</h2>
+
+<p>As we have seen, everything in Python is a object. We can create our own types
+and instances of these by defining classes.</p>
+
+<p>A class definition looks like this:</p>
+<div class="highlight"><pre>
+<span class="k">class </span><span class="n">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="s">&quot;&quot;&quot;A class that represents a student.&quot;&quot;&quot;</span>
+</pre></div>
+
+<p>
+Here the class <code>Student</code> extends the class <code>object</code>. Every
+class must either extend <code>object</code> or another class. Note that if a
+base class is omitted (e.g. <code>class Student: &hellip;</code> instead of
+<code>class Student(object):</code>), then Python assumes that the class extends
+<code>object</code>. We describe inheritance in detail in the next section of
+this assignment.
+</p>
+
+
+<p>Like all compound statements, we expect an indented block following a class definition.
+In the absence of any meaningfull code we can use a docstring or the
+<code>pass</code> keyword.</p>
+
+<p>Classes, like functions, are callable, and we instantiate a
+<code>Student</code>
+object by calling the
+<code>Student</code> class:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s </span><span class="o">= </span><span class="n">Student</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">Student</span><span class="p">)</span>
+<span class="go">&lt;type &quot;type&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">&lt;class &quot;__main__.Student&quot;&gt;</span>
+</pre></div>
+
+
+<p>An instance of a class may have a set of attributes, that is values referred to
+from within the instance. To set or access an attribute we use a period.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.last_name </span><span class="o">= </span><span class="s">&quot;Kripke&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.first_name </span><span class="o">= </span><span class="s">&quot;Saul&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.age </span><span class="o">= </span><span class="mi">73</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.courses </span><span class="o">= </span><span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.courses.append</span><span class="p">(</span><span class="s">&quot;COMP3620&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="s">"{0.first_name} {0.last_name}"</span>.format<span class="n">(s)</span><span class="k">)</span>
+<span class="go">Saul Kripke</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="n">s.courses</span>)
+<span class="go">[&quot;COMP3620&quot;]</span>
+</pre></div>
+
+
+<p>We can add an initialisation method to a class that requires these attributes
+to be specified when the class is instantiated.</p>
+<div class="highlight"><pre>
+<span class="k">class </span><span class="n">Student</span>:</span>
+    <span class="k">def </span><span class="n">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">, </span><span class="n">last_name</span><span class="p">, </span><span class="n">first_name</span><span class="p">, </span><span class="n">student_number</span><span class="p">, </span><span class="n">courses</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="s">&quot;&quot;&quot; (Student, str, str, int, [str]) -> None &quot;&quot;&quot;</span>
+        <span class="nb">self</span><span class="n">.last_name </span><span class="o">= </span><span class="n">last_name</span>
+        <span class="nb">self</span><span class="n">.first_name </span><span class="o">= </span><span class="n">first_name</span>
+        <span class="nb">self</span><span class="n">.student_number </span><span class="o">= </span><span class="n">student_number</span>
+        <span class="nb">self</span><span class="n">.courses </span><span class="o">= </span><span class="nb">list</span><span class="p">(</span><span class="n">courses</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The initialisation method is called automatically when the class is called. If no
+ initialisation method is defined in your class, it defaults to an empty initialisation method.</p>
+
+<p>The <code>self</code>
+ parameter refers to the
+<code>Student</code>
+object that will be created. As we will
+see in a moment, all methods have this as a parameter.</p>
+
+<p>Add the following methods to the previous class description:</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">enrol</span><span class="p">(</span><span class="nb">self</span><span class="p">, </span><span class="n">course_name</span><span class="p">):</span>
+    <span class="s"> &quot;&quot;&quot; Enrol the student in a new course
+
+        (Student, str) -> None
+    &quot;&quot;&quot;</span>
+    <span class="nb">self</span><span class="n">.courses.append</span><span class="p">(</span><span class="n">course_name</span><span class="p">)</span>
+
+<span class="k">def </span><span class="n">full_name</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+    <span class="s"> &quot;&quot;&quot; Return the full name of the student
+
+        (Student) -> str
+    &quot;&quot;&quot;</span>
+    <span class="k">return </span><span class="s">&quot;{0.first_name} {0.last_name}&quot;</span><span class="n">.format(</span> <span class="nb">self</span> <span class="n">)</span>
+</pre></div>
+
+
+<p>Lets try this out:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s </span><span class="o">= </span><span class="n">Student</span><span class="p">(</span><span class="s">&quot;Kripke&quot;</span><span class="p">, </span><span class="s">&quot;Saul&quot;</span><span class="p">, </span><span class="mi">354</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.first_name</span>
+<span class="go">Saul</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.enrol</span><span class="p">(</span><span class="s">&quot;COMP3620&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.courses</span>
+<span class="go">[&quot;COMP3620&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s.full_name</span><span class="p">()</span>
+<span class="go">Saul Kripke</span>
+</pre></div>
+
+
+<p>
+Python uses a concept called &quot;magic methods&quot; to produce a number of different
+useful object behaviours. These are simply methods which adhere to certain
+prototypes.</p>
+
+<p>Here are some important ones which you can implement in your own classes:</p>
+<ul>
+<li>
+<code><span class="pre">__init__(self, ...)</span></code>  &mdash;
+Called when an instance of the class is created.
+</li>
+<li>
+<code><span class="pre">__str__(self)</span></code> &mdash;
+Returns a readable string representing the object.
+Called when the object is converted into a string or printed.
+</li>
+<li>
+<code><span class="pre">__repr__(self)</span></code> &mdash;
+Returns an unambiguous string representing the object.
+ Called when the object is printed as part of a collection (list, etc.)
+</li>
+<li>
+<code><span class="pre">__contains__(self, item)</span></code> &mdash;
+Used with the
+<code>in</code> keyword.
+This should returns <code>True</code> iff object <code>item</code> is &quot;in&quot;
+<code>self</code>. Where &quot;in&quot; is whatever makes sense for your
+class.
+</li>
+</ul>
+
+<p>
+In Python, nothing is truly private and it is impossible to hide the inner workings
+of a class from the users of this class.</p>
+
+<p>Having said that, there is still a way to make methods and attributes private.
+Simply prefix their names with two underscores.</p>
+
+<p>Python then renames this using a standard scheme.
+If we know the scheme that it uses to do this renaming, then we can still access
+these values.</p>
+
+<p>
+We will leave it as an exercise for interested readers to find out how this works
+on their own.
+</p>
+</div>
+
+<div class="section" id="inheritance_polymorphism">
+<h2>Inheritance and Polymorphism</h2>
+
+<p>Python allows for classes to inherit from other classes and override the
+attributes and methods of the original class. It allows for some complicated
+things like multiple inheritance, but that is outside the scope of this tutorial.</p>
+
+<p>Lets look at a simple example of how inheritance works.</p>
+<div class="highlight"><pre>
+<span class="k">class </span><span class="n">A</span>:</span>
+    <span class="s">&quot;&quot;&quot; Class A inherits from the object class.
+        All classes inherit from object by default.
+    &quot;&quot;&quot;</span>
+
+    <span class="k">def </span><span class="n">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">, </span><span class="n">attr1</span><span class="p">, </span><span class="n">attr2</span><span class="p">):</span>
+        <span class="nb">self</span><span class="n">.attr1 </span><span class="o">= </span><span class="n">attr1</span>
+        <span class="nb">self</span><span class="n">.attr2 </span><span class="o">= </span><span class="n">attr2</span>
+
+    <span class="k">def </span><span class="n">__str__</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+    <span class="k">return </span><span class="s">&quot;A object with the following attributes: {}, {}&quot;</span> \
+        .format<span class="p">(</span><span class="nb">self</span><span class="n">.attr1</span><span class="p">, </span><span class="nb">self</span><span class="n">.attr2</span><span class="p">)</span>
+
+    <span class="k">def </span><span class="n">action1</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="k">print(</span><span class="s">&quot;Performing action 1:&quot;</span><span class="p">, </span><span class="nb">self</span><span class="n">.attr1</span><span class="p">, </span><span class="nb">self</span><span class="n">.attr2</span>)
+
+<span class="k">class </span><span class="n">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="s">&quot;&quot;&quot; Class B inherits from the A class. &quot;&quot;&quot;</span>
+
+    <span class="k">def </span><span class="n">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">, </span><span class="n">attr1</span><span class="p">, </span><span class="n">attr2</span><span class="p">, </span><span class="n">attr3</span><span class="p">):</span>
+        <span class="c"># Execute the initialiser from class A</span>
+        <span class="k">super</span><span class="p">()</span><span class="n">.__init__</span><span class="p">(</span><span class="n">attr1</span><span class="p">, </span><span class="n">attr2</span><span class="p">)</span>
+        <span class="nb">self</span><span class="n">.attr3 </span><span class="o">= </span><span class="n">attr3</span>
+
+    <span class="k">def </span><span class="n">__str__</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="k">return </span><span class="s">&quot;B object with the following attributes: {}, {}, {}&quot;</span> <span class="p">\</span>
+           .format<span class="p">(</span><span class="nb">self</span><span class="n">.attr1</span><span class="p">, </span><span class="nb">self</span><span class="n">.attr2</span><span class="p">, </span><span class="nb">self</span><span class="n">.attr3</span><span class="p">)</span>
+
+    <span class="k">def </span><span class="n">action2</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="k">print(</span><span class="s">&quot;Performing action 2:&quot;</span><span class="p">, </span><span class="nb">self</span><span class="n">.attr1</span><span class="p">, </span><span class="nb">self</span><span class="n">.attr2</span><span class="p">, </span><span class="nb">self</span><span class="n">.attr3</span>)
+</pre></div>
+
+
+<p>In this case
+<code>B</code>
+overrides the
+<code>__init__</code> and
+<code>__str__</code> methods of
+<code>A</code>,
+but inherits the method
+<code>action1</code>.
+It introduces a new method
+<code>action2</code>.
+</p>
+
+<p>Notice at the start of the
+<code>__init__</code>
+method in
+<code>B</code>
+we call the
+<code>__init__</code>
+method in <code>A</code>.
+This is standard practice and should be used whenever one class inherits from another.
+</p>
+
+<p>The inheriting classes do not need to be in the same file.
+<code>B</code>
+could inherit from
+<code>A</code>
+by importing
+<code>A</code>
+and then using it.</p>
+</div>
+
+<div class="section" id="exceptions">
+<h2>Exceptions</h2>
+
+<p>Whenever a runtime error occurs, Python creates an exception.
+The program stops running at this point and Python prints out the execution trace
+which ends with the exception that occurred.</p>
+
+<p>For example, dividing by zero creates an exception:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print(</span><span class="mi">55 </span><span class="o">/ </span><span class="mi">0</span>)
+<span class="go">Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span>
+<span class="gr">ZeroDivisionError</span><span class="go">: integer division or modulo by zero</span>
+</pre></div>
+
+
+<p>We can deal with errors without overreacting by using
+<code>try</code> and
+<code>except</code> statements.</p>
+
+<p>
+We have a
+<code>try</code> block
+followed by one or more
+<code>except</code>
+blocks and an (optional)
+<code>else</code>
+block that is executed if no exceptions were raised in the
+<code>try</code> block.</p>
+<div class="highlight"><pre>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c">#Do things here...</span>
+<span class="k">except </span><span class="nb">IndexError</span><span class="p">:</span>
+    <span class="k">print(</span><span class="s">&quot;Our index was invalid.&quot;</span><span class="k">)</span>
+<span class="k">except (</span><span class="nb">ValueError</span><span class="p">, </span><span class="nb">IOError</span><span class="k">) as </span><span class="n">e</span><span class="p">:</span>
+    <span class="k">print(</span><span class="s">&quot;Type conversion error or IO error&quot;</span><span class="p">.format(</span><span class="n">e.message</span>)<span class="k">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print(</span><span class="s">&quot;Everything was ok.&quot;</span><span class="k">)</span>
+</pre></div>
+
+
+<p>We can raise our own errors with the raise statement.</p>
+<div class="highlight"><pre>
+<span class="k">raise </span><span class="nb">ValueError</span><span class="p">(</span><span class="s">&quot;{} is not a valid age&quot;</span><span class="p">.format(</span><span class="n">age</span><span class="p">) </span><span class="p">)</span>
+</pre></div>
+
+
+<p>
+Exceptions are classes which all inherit from
+<code>BaseException</code>.
+Catching a parent exception will catch exceptions with classes that inherit from it.
+The exception hierarchy is described
+<a href="http://docs.python.org/2/library/exceptions.html" target="_blank">here</a>.
+</p>
+
+<p>
+We can define our own exception types be defining classes that inherit from the class
+<code>Exception</code>
+and then use these are normal.</p>
+<div class="highlight"><pre>
+<span class="k">class </span><span class="n">GradeError</span><span class="p">(</span><span class="nb">Exception</span><span class="p">):</span>
+    <span class="cm">&quot;&quot;&quot; This error is raised when we encounter invalid grades. &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+
+<div class="section" id="structure_cmd_line">
+<h2>The Structure of Projects and Command Line Arguments</h2>
+
+<p>Large Python projects will usually be supplied in multiple files.
+When a project is run, some file is run by the interpreter which will then
+import the other files as needed.</p>
+
+<p>It is possible that some files are both intended to be run directly and to be
+imported, with different behaviours expected in either case.
+For example, you might make your own maths library which is designed to be
+imported, but when it is run a set of performance benchmarks are performed.</p>
+
+<p>To achieve this we can take advantage of an attribute that Python gives
+to files when they are run or imported.</p>
+
+<p>Every file has an attribute
+<code>__name__</code>.
+When the file is imported
+<code>__name__</code>
+is set to the name of the module. When the file is run directly, it
+is set to
+<code>&quot;__main__&quot;</code>
+This allows the following design pattern:</p>
+<div class="highlight"><pre>
+<span class="k">def </span><span class="n">main</span><span class="p">():</span>
+    <span class="cm">&quot;&quot;&quot; do stuff &quot;&quot;&quot;</span>
+
+<span class="k">if </span><span class="n">__name__ </span><span class="o">== </span><span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p>By putting your code in main, you avoid polluting the namespace of the module,
+making it easier to avoid errors.</p>
+
+<p>It is sometimes desirable to package a set of modules together. In Python this
+is possible by putting them all in a directory together and then placing a file
+named
+<code>__init__.py</code>, which should
+import all of those things from the modules in the package
+which are intended to be accessible when using the package.
+</p>
+
+<p>
+When we run a Python file, it is possible to supply command line arguments:</p>
+<pre>
+python3 test.py arg1 arg2 arg3
+</pre>
+
+<p>
+These can then be accessed as follows:</p>
+<div class="highlight"><pre>
+<span class="k">import </span><span class="n">sys</span>
+
+<span class="k">print(</span><span class="s">&quot;Number of arguments: {} arguments.&quot;</span><span class="p">.format(</span><span class="nb">len</span><span class="p">(</span><span class="n">sys.argv</span><span class="p">))</span><span class="k">)</span>
+<span class="k">print(</span><span class="s">&quot;Argument List:&quot;</span><span class="p">.format(</span><span class="n">sys.argv</span><span class="p">)</span><span class="k">)</span>
+</pre></div>
+</div>
+
+<div class="section" id="exercise_4">
+<h2>Exercise 4. Pandemic &mdash; 70 Marks</h2>
+
+<p>In this exercise you will develop a simple agent to deal with quickly
+spreading disease outbreaks.</p>
+
+<p>The exercise is divided into two parts:</p>
+<ol>
+<li>
+Write a class that represents a disease outbreak scenario &mdash; 50 Marks;
+</li>
+<li>
+Write a simple agent which uses this scenario class and attempts to prevent
+a pandemic &mdash; 20 Marks.
+</li>
+</ol>
+
+<p>The following files are supplied for this exercise:</p>
+<ul>
+<li>
+<code>disease_simulation.py</code> - tests <code>disease_scenario.py</code> and
+    runs simulations with your agent;
+</li>
+<li>
+<code>disease_scenario.py</code> - reads in scenario files and stores the relevant
+   information. Simulates the spread of disease and your agent moving around.
+</li>
+<li>
+<code>health_agents.py</code> - describes agents which move around a world
+described in <code>disease_scenario.py</code> and attempt to extinguish the
+infection.
+</li>
+</ul>
+
+<p>When you submit your assignment, submit the files
+<code>disease_scenario.py</code> and <code>health_agents.py</code>.
+As with the previous exercises, your code should be commented appropriately.</p>
+
+
+<h3>Part 1: <code>disease_scenario.py</code> &mdash; 50 Marks</h3>
+
+<p>As you complete this exercise, you should validate your code by running
+ <code>disease_simulation.py</code> in testing mode.
+ Type <code>python3 disease_simulation.py</code> to get instructions
+on how to do this.</p>
+
+<p>Ensure that the directory containing the test files <code>exercise4_maps</code> is
+in the directory that you are running <code>disease_simulation.py</code> from.
+
+<p>
+In the file <code>disease_scenario.py</code> make a class called <code>DiseaseScenario</code>
+with the following methods.</p>
+
+<p><strong><code>read_scenario_file(self, scenario_file_name)</code></strong>
+This method should read a scenario from the given file and store the relevant
+information.</p>
+
+<p>It has the following type string: <code>(DiseaseScenario, str) -> bool</code></p>
+
+<p>The file will be expected to have the following lines, and correctly formatted
+files can be assumed:</p>
+<ul>
+<li><code>threshold x</code> &mdash; where <code>x</code> represents the
+required disease threshold for disease to spread between locations.
+Store this value in a variable called <code>threshold</code>.
+</li>
+<li><code>growth x</code> &mdash; where <code>x</code> represents the
+growth rate of disease at a location. In a scenario with a growth rate of 0.2,
+20% more disease is added at every step.
+Store this value in a variable called <code>growth</code>.
+</li>
+<li><code>spread x</code> &mdash; where <code>x</code> represents the
+fraction of the disease at a location which will spread to neighbouring locations
+at each step if the spreading location has a disease greater than or equal to
+<code>threshold</code>.
+Store this value in a variable called <code>spread</code>.
+</li>
+<li><code>location loc</code> &mdash; where <code>loc</code> is
+a string representing a location in the problem. Store each of these entries
+in a list called <code>locations</code>.
+</li>
+<li><code>start loc</code> &mdash; where <code>loc</code> is
+a string representing the starting location of the agent in the problem.
+Store the starting location in a variable called <code>location</code>,
+which will be used to keep track of current location of the agent throughout the simulation.
+</li>
+<li><code>disease loc x</code> &mdash; where <code>loc</code> is
+a string representing a location and <code>x</code> is the quantity of disease
+at that location in the beginning of the scenario. Make a dictionary called
+<code>disease</code> which maps locations to their level of disease.
+<strong>By default, locations should have <code>0</code> disease</strong>.
+</li>
+<li><code>conn loc1 loc2</code> &mdash; where <code>loc1</code> and <code>loc2</code>
+are strings representing locations. This indicates that there is a road between
+<code>loc1</code> and <code>loc2</code>.
+Store these roads in a dictionary called <code>conn</code>. This dictionary
+should map each location to a <strong>set</strong> of locations it is connected to. Roads are
+symmetrical and the <code>conn</code> dictionary should reflect that by
+containing links in both directions.
+Locations which are connected to nothing should map to an empty set.
+</li>
+</ul>
+
+<p> All of the variables you create should be stored in the current instance
+of the class &mdash; i.e. using the <code>self</code> parameter of the method.</p>
+
+<p>The function should return <code>True</code> if it was successful, and
+<code>False</code> in the case an IOError occurs. Other Exceptions can be
+ignored.</p>
+
+<p>In summary, <code>read_scenario_file</code> will create the following
+variables with the specified types:</p>
+<ul>
+<li>
+<code>threshold</code> &mdash; <code>float</code>;
+</li>
+<li>
+<code>growth</code> &mdash; <code>float</code>;
+</li>
+<li>
+<code>spread</code> &mdash; <code>float</code>;
+</li>
+<li>
+<code>location</code> &mdash; <code>str</code>;
+</li>
+<li>
+<code>locations</code> &mdash; <code>[str]</code>;
+</li>
+<li>
+<code>disease</code> &mdash; <code>{ str : float }</code>;
+</li>
+<li>
+<code>conn</code> &mdash; <code>{ str : set([str]) }</code>.
+</li>
+</ul>
+
+
+<p><strong><code>valid_moves(self)</code></strong>
+This method should return a list of valid moves.
+Each valid move is either a neighbouring location or the current location
+of the agent (which indicates that the agent stays put).
+</p>
+
+<p>This method has the type string: <code>(DiseaseScenario) -> [str]</code></p>
+
+<p><strong><code>move(self, loc)</code></strong>
+This method should move the agent to the specified location and clear the disease
+there &mdash; i.e. set the disease to <code>0</code>.
+If the method attempts to move the agent to a location that is invalid given
+the current location, the
+method should raise a <code>ValueError</code>.
+</p>
+
+<p>This method has the type string: <code>(DiseaseScenario, str) -> None</code></p>
+
+<p><strong><code>spread_disease(self)</code></strong>
+This method should spread the disease according the threshold, growth, spread, and
+connections between locations. Disease only spreads to adjacent locations if
+the spreading location has greater than or equal to the threshold level of disease.
+Disease will not spread to a location where the agent is.
+</p>
+
+<p>Disease grows and spreads at all locations at the same time.
+This means that a location <code>loc</code>, which has <code>d = disease[loc]</code>
+at the start of the method call, will have an additional <code>growth * d</code>
+disease, plus contributions from its neighbours. It will spread
+<code>spread * d</code> to its neighbours, if <code>d &geq; threshold</code>.
+</p>
+
+<p>For example, if we have two connected locations <code>loc1</code> and <code>loc2</code>
+with disease <code>5</code> and <code>10</code> respectively and the
+<code>threshold</code> is <code>5</code>, <code>growth</code> is <code>0.2</code>,
+and <code>spread</code> is <code>0.1</code>, then after growth and spreading <code>loc1</code>
+will have <code>(5 * 1.2) + (10 * 0.1) = 7</code> disease and <code>loc2</code>
+will have <code>(10 * 1.2) + (5 * 0.1) = 12.5</code>
+disease.</p>
+
+<p>This method has the type string: <code>(DiseaseScenario) -> None</code></p>
+
+<p> These methods can be tested by running <code>disease_simulation.py</code>
+in testing mode as described at the beginning of this exercise.</p>
+
+<p>Your code needs to pass all tests before continuing on to the
+next part of the assignment.</p>
+
+<h3>Part 2: <code>health_agents.py</code> &mdash; 20 Marks</h3>
+
+<p>In the file <code>health_agents.py</code> there is a class defined called
+<code>HealthAgent</code>. This defines an agent which, very poorly, attempts
+to control the spread of disease. Each step of the simulation it will move
+to the adjacent location with the most disease. If no adjacent locations
+have any disease, it will move randomly.
+</p>
+
+<p>You should extend <code>HealthAgent</code> with your own agent class called
+<code>SmartHealthAgent</code> and implement an appropriate <code>choose_move</code>
+method.</p>
+
+<p>Test your agent with the scenarios in the <code>exercise4_maps</code>
+subdirectory.</p>
+
+<p>Whenever the simulator is not run in Testing mode, a file called <code>XXXX.results.json</code> is created.
+It contains a summary of the outcomes of the simulations in a JSON document. For each run of
+the simulator the level of final disease, number of simulation steps and score are stored. You will
+also see that the average_score is there also available.
+</p>
+
+<p>Run <code>python3 disease_simulation.py</code> to find out how to run several simulations.</p>
+
+<p>The number of marks you get in this exercise depend on how good is the performance
+of your agent compared with that of <code>HealthAgent</code> over the five given scenarios. We will
+use to evaluate your agent the following parameters:</p>
+
+<div class="highlight"><pre>
+<span class="n">-H 100 -n 100</span>
+</pre></div>
+
+<p>that is, over 100 simulation runs, each run with a maximum of 100 steps.</p>
+
+<p>For each scenario you would get the following marks:</p>
+
+<div class="highlight"><pre>
+<span class="n">Marks = max( 1, 4 * (1 - (100 - Avg. Score Student Agent)/(100 - Avg. Score Health Agent))) )</span>
+</pre></div>
+
+<p>whenever the average score of your agent isn't <emph>optimal</emph>. In that case you get 4 marks. Otherwise, the bigger the difference between your agent and <code>HealthAgent</code> the better. The sum of the marks obtained
+on all scenarios will be rounded to the closest next integer. You can keep the decimals for your records and bragging rights.</p>
+
+</div>
+
+<div class="section" id="useful_things">
+<h2>Useful Things</h2>
+
+<p>The following sections of this tutorial are non-compulsory, but they introduce
+some powerful features of Python, which might make your life a lot easier, so
+it is recommended that you read them some time.</p>
+
+</div>
+
+<div class="section" id="itertools">
+<h3>The itertools Module</h3>
+
+<p>The <code>itertools</code>
+module contains a set of powerful functions to deal with iterators
+can save you a lot of time and effort.
+</p>
+
+<p>A thorough overview of the module can be found
+<a href="http://www.python.org/doc//current/library/itertools.html" target="_blank">here</a>.</p>
+
+<p>We will cover just a few examples here.</p>
+
+<p>First, <code>itertools.chain</code> provides an easy way to combine multiple iterators
+into a single iterator:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">import </span><span class="n">itertools</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">= </span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">, </span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for </span><span class="n">item </span><span class="k">in </span><span class="n">itertools.chain</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">, </span><span class="mi">7</span><span class="p">), </span><span class="nb">x</span><span class="p">, </span><span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">, </span><span class="mi">13</span><span class="p">)):</span>
+        <span class="k">print(</span><span class="n">item</span><span class="k">)</span>
+<span class="go">5
+6
+1
+2
+11
+12</span>
+</pre></div>
+
+<p>Next, <code>itertools.combinations</code> can generate all (unordered)
+combinations of a given size from elements in an iterator:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">itertools.combinations</span><span class="p">(</span><span class="s">&quot;abcd&quot;</span><span class="p">, </span><span class="mi">3</span><span class="p">))</span>
+<span class="go">[('a', 'b', 'c'), ('a', 'b', 'd'), ('a', 'c', 'd'), ('b', 'c', 'd')]
+</span>
+</pre></div>
+
+<p>Next, <code>itertools.product</code> can generate Cartesian products from a list
+of iterators:</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x </span><span class="o">= </span><span class="p">[[</span><span class="nb">True</span><span class="p">, </span><span class="nb">False</span><span class="p">]] </span><span class="o">* </span><span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">[[True, False], [True, False], [True, False]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">itertools.product</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+<span class="go">[(True, True, True),
+ (True, True, False),
+ (True, False, True),
+ (True, False, False),
+ (False, True, True),
+ (False, True, False),
+ (False, False, True),
+ (False, False, False)]</span>
+</pre></div>
+
+<p>Here, the <code>*</code> before <code>x</code> in the call to <code>itertools.product</code> unpacks the elements of <code>x</code> into the arguments of <code>itertools.product</code>. It is equivalent to calling the function with three lists of the form <code>[True, False]</code>.</p>
+
+<p>This final call would have been helpful in the Exercise 2.</p>
+
+</div>
+
+<div class="section" id="comprehensions">
+<h3>Comprehensions &mdash; Or how much can I do in one statement?</h3>
+
+<p>You may have noticed that is a very compact language. It is not
+uncommon to feel a sense of exhilaration when you realise that you can solve problems
+often with a small fraction of the number of lines of code that would be required
+in C++ or Java.</p>
+
+<p>Lets take this even further and put a for loop inside the definition of a list.</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">x </span><span class="o">** </span><span class="mi">2 </span><span class="k">for </span><span class="n">x </span><span class="k">in </span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="go">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+</pre></div>
+
+
+<p>What about making a dictionary which maps the letters of the alphabet to their
+position in the alphabet?</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alph_index </span><span class="o">= </span><span class="nb">dict</span><span class="p">([(</span><span class="n">a</span><span class="p">, </span><span class="n"> i</span><span class="p">) </span><span class="k">for </span><span class="n">i</span><span class="p">, </span><span class="n">a </span><span class="k">in </span><span class="nb">enumerate</span><span class="p">(</span><span class="s">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span><span class="o">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alph_index</span><span class="p">[</span><span class="s">&quot;j&quot;</span><span class="p">]</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alph_index</span><span class="p">[</span><span class="s">&quot;z&quot;</span><span class="p">]</span>
+<span class="go">25</span>
+</pre></div>
+
+<p>We can nest loops and even add conditionals. What if want a list of all coordinate
+pairs in a grid, except those points on the diagonal?</p>
+<div class="highlight"><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[(</span><span class="n">x</span><span class="p">, </span><span class="n">y</span><span class="p">) </span><span class="k">for </span><span class="n">x </span><span class="k">in </span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">) </span><span class="k">for </span><span class="n">y </span><span class="k">in </span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">) </span><span class="k">if </span><span class="n">x </span><span class="o">!= </span><span class="n">y</span><span class="p">]</span>
+<span class="go">[(0, 1),
+ (0, 2),
+ (0, 3),
+ (0, 4),
+ (1, 0),
+ (1, 2),
+ ...</span>
+</pre></div>
+
+<p>It is easy to go overboard with list comprehensions and make your code hard to
+read. So, keep them simple.</p>
+
+<p>Having said that, it might be a fun exercise at this point to think about how
+to use a list comprehension to compute all prime numbers up to a given bound.</p>
+</div>
+
+</div></div></div>
+  </body>
+</html>

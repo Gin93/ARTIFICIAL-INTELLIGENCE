@@ -1,0 +1,36 @@
+Report Q4
+Zi Jin
+u5541673
+
+My testing platform: WIN10 CPU: i7-6700  RAM:16GB
+
+---------------
+result
+---------------
+I tested my LNS about 10 times: 
+
+for the two samll cases (3-4 and 6-4) problems, my code can find the best(optimal) solution within 10s.
+
+for the 12-4 case, my code finds the best solution is 27589.46 by costing about 20s. (I didn't set a timer in the code to let the program run 1 min and stop because enforce
+stopping the program may lost the solution, but I set the maximal iterations)
+
+for the 21-8 case, my code finds the best solution is 51201.61 by costing about 1 min.
+
+
+----------------------------
+How I define neighbourhoods
+----------------------------
+I use three way to define a neighbour (destory solution):
+
+Firstly, I destroyed all of the infomation about sequence for the samll case (3-4,6-4 and 12-4), but only remove half of that kind of information for the largest case(21-8).
+
+Secondly, I destroyed ambient good delivery information in odd iterations, while chilled good delivery information in even iterations.(destroying them together can improve
+the running time significantly)
+
+Lastly, in order to reduce the cost further, I destroyed some information randomly for each iterations.(I tried many many times and found this way works very well, but I 
+believe the core idea of LNS is "logic" rahter than "random", therefore I just slightly used this way)
+
+
+I tried to destoryed the "unfully" loaded trucks, for example, a truck can carry 10 units good, but in a solution it just carries 4 units goods, in this situation I 
+intuitively supposed destorying it can reduce the cost significantly, but actually the reduction is slight. As a tradeoff of the performance and speed, finally I didn't
+implemented that idea.

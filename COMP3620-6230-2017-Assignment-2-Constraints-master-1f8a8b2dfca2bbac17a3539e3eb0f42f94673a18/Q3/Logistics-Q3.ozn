@@ -1,0 +1,6 @@
+output ([""++format(T)++","++format(C)++" \n"]++[""++format(int2float(tot_cost)/int2float(100))++" \n"])++[if fix(delivery[t,5*c-1])!=0 \/ fix(delivery[t,5*c]!=0) then ""++format(delivery[t,5*c-4])++","++format(delivery[t,5*c-2])++","++format(delivery[t,5*c-3])++","++format(delivery[t,5*c-1])++","++format(delivery[t,5*c])++" \n" else "" endif | t in trucks, c in 1..C, ];
+int: C = 8;
+int: T = 21;
+set of int: trucks = 1..21;
+array [trucks,1..5*C] of int: delivery;
+int: tot_cost;

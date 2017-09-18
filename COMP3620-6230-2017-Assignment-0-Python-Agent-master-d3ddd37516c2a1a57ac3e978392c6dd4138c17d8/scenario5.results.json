@@ -1,0 +1,505 @@
+{
+    "average_score": 30.08,
+    "runs": [
+        {
+            "final_disease": 196583.71058106422,
+            "last_step": 16,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 196583.71058106422,
+            "last_step": 16,
+            "score": 0.0
+        },
+        {
+            "final_disease": 196583.71058106422,
+            "last_step": 16,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 196583.71058106422,
+            "last_step": 16,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 196583.71058106422,
+            "last_step": 16,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 196583.71058106422,
+            "last_step": 16,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 196583.71058106422,
+            "last_step": 16,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 196583.71058106422,
+            "last_step": 16,
+            "score": 0.0
+        },
+        {
+            "final_disease": 0.0,
+            "last_step": 6,
+            "score": 94
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 104475.14284402132,
+            "last_step": 15,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 144884.5992088318,
+            "last_step": 12,
+            "score": 0.0
+        },
+        {
+            "final_disease": 156830.44922351837,
+            "last_step": 12,
+            "score": 0.0
+        }
+    ]
+}
